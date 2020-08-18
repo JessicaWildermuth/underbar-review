@@ -130,10 +130,15 @@
     _.each(listCopy, function(element) {
       //check if iterator exists,if yes, apply call iterator on element
       //replace the curent element  of the copied array with the iterated element
-      //if (iterator) {
-      //  element = iterator(element);
-      //}
+      if (iterator) {
+        // save mutated element
+        // if iterator exists, test mutated element
+        var mutatedElement = iterator(element);
+
+      }
+      // if iterator doesn't exist, test non-mutated element
       if (!uniqueList.includes(element)) {
+        // push element if conditions are met
         uniqueList.push(element);
       }
     });

@@ -121,6 +121,19 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
+    // only want one of any value that is in the original array
+    var uniqueList = [];
+    //if no iterator
+    //iterate over array and if iterated value is not present in result array, add it ot that array
+    if (!iterator) {
+      _.each(array, function(element) {
+        if (!uniqueList.includes(element)) {
+          uniqueList.push(element);
+        }
+      });
+    }
+    //if sorted - possibly ignore
+    //if iterator
   };
 
 

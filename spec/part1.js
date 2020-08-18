@@ -339,7 +339,7 @@
         var numbers = [1, 2, 1, 3, 1, 4];
         var uniqueNumbers = _.uniq(numbers);
 
-        expect(uniqueNumbers).to.not.equal(numbers);
+        expect(uniqueNumbers).to.not.eql(numbers);
       });
     });
 

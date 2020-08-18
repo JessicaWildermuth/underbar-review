@@ -123,17 +123,22 @@
   _.uniq = function(array, isSorted, iterator) {
     // only want one of any value that is in the original array
     var uniqueList = [];
+    var listCopy = array.slice();
+    // create a copy of the orignal array
     //if no iterator
     //iterate over array and if iterated value is not present in result array, add it ot that array
-    if (!iterator) {
-      _.each(array, function(element) {
-        if (!uniqueList.includes(element)) {
-          uniqueList.push(element);
-        }
-      });
-    }
-    //if sorted - possibly ignore
+    _.each(listCopy, function(element) {
+      //check if iterator exists,if yes, apply call iterator on element
+      //replace the curent element  of the copied array with the iterated element
+      //if (iterator) {
+      //  element = iterator(element);
+      //}
+      if (!uniqueList.includes(element)) {
+        uniqueList.push(element);
+      }
+    });
     //if iterator
+    return uniqueList;
   };
 
 

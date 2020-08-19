@@ -299,7 +299,8 @@
 
     for (var i = 0; i < arguments.length; i++) {
       for (var key in arguments[i]) {
-        obj[key] = arguments[i][key];
+        var arg = arguments[i];
+        obj[key] = arg[key];
       }
     }
     return obj;
@@ -308,6 +309,15 @@
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    for (var i = 0; i < arguments.length; i++) {
+      for (var key in arguments[i]) {
+        var arg = arguments[i];
+        if (obj[key] === undefined) {
+          obj[key] = arg[key];
+        }
+      }
+    }
+    return obj;
   };
 
 

@@ -209,6 +209,27 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
+    // edge case
+    // collection.length = 1;
+    // set a condition based on if there is an accumulator
+    if (accumulator === undefined) {
+      var accumulator = collection[0];
+      for (var i = 1; i < collection.length; i++) {
+        accumulator = (iterator(accumulator, collection[i]));
+      }
+    } else {
+      _.each(collection, function(element) {
+        accumulator = (iterator(accumulator, element));
+      });
+    }
+
+    return accumulator;
+
+    //if no, begin reducing on first element of collection
+    //if yes. begin reducing on the accumulator
+    //iterate through the collection applying the iterator to each element and the result of the previous iteration
+    //return final result
+
   };
 
   // Determine if the array or object contains a given value (using `===`).

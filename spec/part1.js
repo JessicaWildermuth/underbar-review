@@ -376,11 +376,8 @@
       });
 
       it('should apply a function to every value in an array', function() {
-        var multiplyByTwo = function (arr) {
-          for (var i = 0; i < arr.length; i ++) {
-            arr[i] *= 2;
-          }
-          return arr;
+        var multiplyByTwo = function (num) {
+          return num * 2;
         };
 
         expect(_.map([1, 2, 3], multiplyByTwo)).to.eql([2, 4, 6]);

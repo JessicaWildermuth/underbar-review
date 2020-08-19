@@ -435,6 +435,7 @@
     // save index element to placeholder
     // switch element positions
     var copy = array.slice();
+
     for (var i = 0; i < copy.length; i++) {
       var placeholder = copy[i];
       var randIndex = Math.round(Math.random() * (copy.length - 1));

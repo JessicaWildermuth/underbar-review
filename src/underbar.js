@@ -361,6 +361,42 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    // use and object to store previous function calls
+    // func name : result
+    var rememberZone = [];
+    var index;
+    return function() {
+      //loop over remember array
+      for (var i = 0; i < rememberZone.length; i++) {
+        // set variable to track if each argument matches argument property of object in remember
+        var sameArguments = true;
+        for (var j = 0; j < arguments.length; j++) {
+          if (typeof arguments[j] === 'object') {
+            for (var k = 0; k < arguments[j].length; k++) {
+              if (arguments[j][k] !== rememberZone[i].args[j][k]) {
+                sameArguments = false;
+              }
+            }
+          } else if (rememberZone[i].args[j] !== arguments[j]) {
+            sameArguments = false;
+            break;
+          }
+        }
+        if (sameArguments) {
+          index = i;
+        }
+      }
+      if (!sameArguments) {
+        var memo = {};
+        memo.result = func.apply(this, arguments);
+        memo.args = arguments;
+        rememberZone.push(memo);
+        return memo.result;
+      } else {
+        return rememberZone[index].args;
+      }
+    };
+
   };
 
   // Delays a function for the given number of milliseconds, and then calls

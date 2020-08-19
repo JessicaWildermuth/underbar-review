@@ -91,7 +91,8 @@
       it('fails for a collection of all-falsy values', function() {
         // Replace this line with an `expect` statement that tests
         // the behavior described by the `it` string
-        throw new Error('This test is missing.');
+        expect(_.every([false, null, 0], _.identity)).to.be.false;
+        //throw new Error('This test is missing.');
       });
 
       it('fails for a collection containing mixed falsy and truthy values', function() {
@@ -413,7 +414,7 @@
         memoSpy(10);
         expect(spy).to.have.been.calledOnce;
       });
-      
+
       it('should not run the memoized function twice when given a reference type as an argument', function() {
         // Be careful how you are checking if a set of arguments has been passed in already
         var spy = sinon.spy(function() { return 'Dummy output'; });
@@ -473,7 +474,7 @@
         expect(shuffled).to.not.equal(numbers);
         expect(numbers).to.eql([4, 5, 6]);
       });
-            
+
       it('should maintain same array length', function() {
         var numbers = [1, 1, 2, 3];
         var shuffled = _.shuffle(numbers);

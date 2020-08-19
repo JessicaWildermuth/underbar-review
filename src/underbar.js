@@ -124,6 +124,7 @@
     // only want one of any value that is in the original array
     var uniqueList = [];
     var listCopy = array.slice();
+    var mutatedArray = [];
     // create a copy of the orignal array
     //if no iterator
     //iterate over array and if iterated value is not present in result array, add it ot that array
@@ -134,12 +135,21 @@
         // save mutated element
         // if iterator exists, test mutated element
         var mutatedElement = iterator(element);
+        // if mutated element does not exist in mutated array
+        // push mutated element into array
+        // push original element into uniquelist
+        if (!mutatedArray.includes(mutatedElement)) {
+          mutatedArray.push(mutatedElement);
+          uniqueList.push(element);
+        }
 
-      }
+      } else {
       // if iterator doesn't exist, test non-mutated element
-      if (!uniqueList.includes(element)) {
-        // push element if conditions are met
-        uniqueList.push(element);
+      // ==> else
+        if (!uniqueList.includes(element)) {
+          // push element if conditions are met
+          uniqueList.push(element);
+        }
       }
     });
     //if iterator

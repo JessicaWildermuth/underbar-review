@@ -253,7 +253,7 @@
       var iterator = _.identity;
     }
     _.each(collection, function(element) {
-      if (iterator(element) === false || iterator(element) === undefined || iterator(element) === 0) {
+      if (!iterator(element)) {
         result = false;
       }
     });
@@ -264,6 +264,16 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    var result = false;
+    if (iterator === undefined) {
+      var iterator = _.identity;
+    }
+    _.every(collection, function(element) {
+      if (iterator(element)) {
+        result = true;
+      }
+    });
+    return result;
   };
 
 
